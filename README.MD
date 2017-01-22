@@ -10,7 +10,7 @@ npm install route-service
 
 #### Sample
 
-```ecmascript 6
+```
 import Router from 'router';
 
 const router = new Router([
