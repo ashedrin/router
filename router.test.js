@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import Router from './router';
+import Router from './lib/router';
 
 describe('Test system router', () => {
     describe('Test constructor', () => {
