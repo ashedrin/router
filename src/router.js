@@ -19,10 +19,24 @@ export default class Router {
 		return routeIsUnique;
 	}
 
-	getPath(routeName, params = {}) {
+	getPath(routeName, inLineParams = {}, queryParams = {}) {
 		const originalPath = this.getOriginalPath(routeName);
+		const replacedPath = this.replaceParams(originalPath, inLineParams);
 
-		return this.replaceParams(originalPath, params);
+		return this.appendQueryParams(replacedPath, queryParams);
+	}
+
+	appendQueryParams(path, params) {
+		const pairs = [];
+		const updatedPath = path.includes("?") ? path : path + "?"
+
+		Object.keys(params).forEach(
+			key => {
+				pairs.push(key + "=" + params[key]);
+			}
+		);
+
+		return pairs.length ? updatedPath + pairs.join("&") : path;
 	}
 	
 	getOriginalPath(routeName) {
